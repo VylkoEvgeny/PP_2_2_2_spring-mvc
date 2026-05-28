@@ -1,7 +1,7 @@
 package web.service;
 
 import org.springframework.stereotype.Service;
-import web.model.Car;
+import web.entity.Car;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,14 +15,13 @@ public class CarService {
             new Car("Skoda", "grey", 2017),
             new Car("Volkswagen", "blue", 2019));
 
-    public List<Car> getAllCars() {
-        return cars;
-    }
-
-    public List<Car> getCars(int count) {
-        if (count < 0) {
+    public List<Car> getCars(Integer count) {
+        if (count == null) {
+            return cars;
+        }
+        if (count <= 0) {
             return Collections.emptyList();
         }
-        return new ArrayList<>(cars.subList(0, Math.min(count, cars.size())));
+        return List.copyOf(cars.subList(0, Math.min(count, cars.size())));
     }
 }
