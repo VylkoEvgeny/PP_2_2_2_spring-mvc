@@ -8,14 +8,15 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class CarService {
+public class CarService implements TransportService<Car> {
     private final List<Car> cars = List.of(new Car("BMW", "white", 2024),
             new Car("Audi", "black", 2025),
             new Car("Mercedes", "green", 2020),
             new Car("Skoda", "grey", 2017),
             new Car("Volkswagen", "blue", 2019));
 
-    public List<Car> getCars(Integer count) {
+    @Override
+    public List<Car> getTransports(Integer count) {
         if (count == null) {
             return cars;
         }
